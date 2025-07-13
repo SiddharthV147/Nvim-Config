@@ -1,0 +1,34 @@
+return {
+  {
+    "williamboman/mason.nvim",
+    config = true,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "neovim/nvim-lspconfig", "williamboman/mason.nvim" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "rust_analyzer",
+          "lua_ls",
+          -- "java-language-server",
+	  -- "typescript-language-server",
+        },
+        automatic_installation = true,
+      })
+    end,
+  },
+--   {
+--     "jay-babu/mason-null-ls.nvim",
+--     dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim" },
+--     config = function()
+--       require("mason-null-ls").setup({
+--         ensure_installed = {
+--           "prettier",
+--         },
+--         automatic_installation = true,
+--       })
+--     end,
+--   }
+}
+

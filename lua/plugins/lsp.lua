@@ -1,9 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
-  dependencies = { 'saghen/blink.cmp' },
+  dependencies = { "saghen/blink.cmp" },
   config = function()
-    local lspconfig = require("lspconfig")
-
     require("mason").setup()
     require("mason-lspconfig").setup({
       ensure_installed = { "lua_ls", "pyright", "rust_analyzer", "html", "cssls", "jdtls" },
@@ -22,17 +20,21 @@ return {
       map("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, opts)
     end
 
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
-    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- Use blink.cmp capabilities
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-    -- Setup LSP servers
+    -- Define server configs using the new API
     local servers = { "lua_ls", "pyright", "rust_analyzer", "html", "cssls" }
+
     for _, server in ipairs(servers) do
-      lspconfig[server].setup({
+      vim.lsp.config[server] = {
         on_attach = on_attach,
         capabilities = capabilities,
-      })
+      }
+
+      -- Start LSP client using new setup
+      vim.lsp.start(vim.lsp.config[server])
     end
   end,
 }

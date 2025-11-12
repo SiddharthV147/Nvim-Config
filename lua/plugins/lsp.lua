@@ -1,7 +1,7 @@
 
 return {
   "neovim/nvim-lspconfig",
-  dependencies = { "hrsh7th/nvim-cmp", "saecki/blink.cmp", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
+  dependencies = { "hrsh7th/nvim-cmp", "saghen/blink.cmp", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
   config = function()
     -- Mason setup
     require("mason").setup()

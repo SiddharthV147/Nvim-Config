@@ -1,3 +1,4 @@
+
 return {
   {
     "williamboman/mason.nvim",
@@ -5,19 +6,42 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "neovim/nvim-lspconfig", "williamboman/mason.nvim" },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "williamboman/mason.nvim",
+    },
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "rust_analyzer",
+          -- C / C++
+          "clangd",
+
+          -- Java
+          "jdtls",
+          -- "vscode-spring-boot-tools",
+
+          -- Lua
           "lua_ls",
-          -- "java-language-server",
-	  -- "typescript-language-server",
+
+          -- Python
+          "pyright",
+          "pylsp",
+          -- "black",
+
+          -- Rust
+          -- "rust_analyzer",
+
+          -- Shell / Bash
+          -- "shfmt",
+
+          -- Lua Formatter
+          "stylua",
         },
         automatic_installation = true,
       })
     end,
   },
+}
 --   {
 --     "jay-babu/mason-null-ls.nvim",
 --     dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim" },
@@ -30,5 +54,5 @@ return {
 --       })
 --     end,
 --   }
-}
+-- }
 
